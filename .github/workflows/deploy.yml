@@ -1,26 +1,31 @@
-name: Deploy via SSH to VPS
+name: Déploiement manuel sur le VPS
 
 on:
-  workflow_dispatch: # Ce bloc permet de lancer le workflow manuellement depuis l’interface GitHub Actions
+  workflow_dispatch: # Ce workflow se déclenche manuellement via GitHub Actions
 
 jobs:
   deploy:
-    name: Déploiement VPS
+    name: Déploiement complet du projet sur le VPS
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
-      - name: Connexion SSH et déploiement
+      - name: Connexion SSH et exécution des commandes Docker
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          timeout: 900s
           script: |
+            echo "Mise à jour du dépôt"
             cd /var/www/carmeet
             git pull
 
+            echo "Nettoyage Docker (images, volumes, cache)"
             docker system prune -af --volumes
 
+            echo "Rebuild complet des services"
             docker compose build --no-cache
+
+            echo "Lancement des conteneurs"
             docker compose up -d
