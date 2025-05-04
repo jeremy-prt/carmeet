@@ -10,7 +10,7 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - name: Connexion SSH et exécution des commandes Docker
+      - name: Connexion SSH et déploiement sans purge
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -21,11 +21,8 @@ jobs:
             cd /var/www/carmeet
             git pull
 
-            echo "Nettoyage Docker (images, volumes, cache)"
-            docker system prune -af --volumes
-
-            echo "Rebuild complet des services"
-            docker compose build --no-cache
+            echo "Reconstruction des services (build sans suppression)"
+            docker compose build
 
             echo "Lancement des conteneurs"
             docker compose up -d
