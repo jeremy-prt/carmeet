@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./api
+    container_name: carmeet_api
+    env_file: ./api/.env
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    restart: always
+
+  front:
+    build: ./front
+    container_name: carmeet_front
+    env_file: ./front/.env
+    ports:
+      - "3000:3000"
+    restart: always
+
+  db:
+    image: mysql:8
+    container_name: carmeet_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootsecret
+      MYSQL_DATABASE: carmeet
+      MYSQL_USER: carmeet_user
+      MYSQL_PASSWORD: secret
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: always
+
+volumes:
+  mysql_data:

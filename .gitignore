@@ -1,0 +1,22 @@
+# Global
+.DS_Store
+.env
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.vscode/
+.idea/
+
+# API
+/api/node_modules/
+/api/.env
+/api/dist/
+
+# FRONT (Nuxt)
+# Build & runtime
+/front/.nuxt/
+/front/.output/
+/front/node_modules/
+/front/.env
+/front/dist/
