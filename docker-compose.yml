@@ -4,24 +4,35 @@ services:
   api:
     build: ./api
     container_name: carmeet_api
-    env_file: ./api/.env
+    restart: always
+    env_file:
+      - ./api/.env
     ports:
       - "3001:3001"
     depends_on:
       - db
-    restart: always
+    environment:
+      DB_HOST: db
+    networks:
+      - carmeet-net
 
   front:
     build: ./front
     container_name: carmeet_front
-    env_file: ./front/.env
+    restart: always
+    env_file:
+      - ./front/.env
     ports:
       - "3000:3000"
-    restart: always
+    depends_on:
+      - api
+    networks:
+      - carmeet-net
 
   db:
     image: mysql:8
     container_name: carmeet_db
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootsecret
       MYSQL_DATABASE: carmeet
@@ -31,7 +42,12 @@ services:
       - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
-    restart: always
+    networks:
+      - carmeet-net
 
 volumes:
   mysql_data:
+
+networks:
+  carmeet-net:
+    driver: bridge
