@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   api:
     build: ./api
@@ -36,15 +38,12 @@ services:
       MYSQL_DATABASE: carmeet
       MYSQL_USER: carmeet_user
       MYSQL_PASSWORD: secret
-    volumes:
-      - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
     networks:
       - carmeet-net
-
-volumes:
-  mysql_data:
 
 networks:
   carmeet-net:
