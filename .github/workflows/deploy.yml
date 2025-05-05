@@ -1,28 +1,32 @@
-name: Déploiement manuel sur le VPS
+name: Déploiement automatique sur le VPS
 
 on:
-  workflow_dispatch: # Ce workflow se déclenche manuellement via GitHub Actions
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
-    name: Déploiement complet du projet sur le VPS
+    name: Déploiement complet sur le VPS
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
     steps:
-      - name: Connexion SSH et déploiement sans purge
+      - name: Connexion SSH et déploiement automatique
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            echo "Mise à jour du dépôt"
-            cd /var/www/carmeet
-            git pull
+            echo "Aller dans le dossier du projet"
+            cd /srv/carmeet
 
-            echo "Reconstruction des services (build sans suppression)"
-            docker compose build
+            echo "Pull du dernier code"
+            git pull origin main
 
-            echo "Lancement des conteneurs"
-            docker compose up -d
+            echo "Rebuild des conteneurs"
+            docker compose down
+            docker compose up -d --build
+
+            echo "Déploiement terminé"

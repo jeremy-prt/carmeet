@@ -2,7 +2,7 @@
   <div class="bg-black">
     <div class="container mx-auto py-8">
       <h1 class="text-4xl font-bold text-center text-white mb-8">
-        Événements en vedette (test action)
+        Événements en vedette (petit test)
       </h1>
 
       <!-- Carrousel des cartes d'événements mis en avant -->
