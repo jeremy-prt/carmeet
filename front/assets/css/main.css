@@ -1,15 +1,13 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #bf272d;
-  --color-primary-hover: #d32f35;
-}
-:root {
-  --font-montserrat: "Montserrat", sans-serif;
+  --color-main: #bf272d;
+  --color-secondary: #0070ba;
+  --color-red-dark: #b91c1c;
+  --color-bg-dark: #170101;
 }
 
-body {
-  font-family: var(--font-montserrat);
+html {
+  font-family: "Poppins", sans-serif;
 }

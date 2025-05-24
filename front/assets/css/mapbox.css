@@ -1,0 +1,59 @@
+/* Styles globaux pour les éléments Mapbox */
+
+/* Style pour les popups Mapbox */
+.mapboxgl-popup {
+  z-index: 1000; /* Assure que le popup est au-dessus des autres éléments */
+  max-width: 250px; /* Limite la largeur du popup */
+}
+
+/* Supprime la flèche de base du popup si vous utilisez un design sans flèche */
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+  border-color: transparent !important;
+}
+
+.mapboxgl-popup-content {
+  padding: 0 !important; /* Supprime le padding par défaut de Mapbox */
+  border-radius: 8px; /* Arrondit les coins */
+  overflow: hidden; /* Cache tout débordement */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Ajoute une ombre */
+  background-color: #fff; /* Fond blanc comme sur la capture */
+  color: #333; /* Couleur de texte foncée */
+}
+
+.event-popup-content {
+  padding: 15px; /* Padding interne pour le contenu */
+}
+
+.event-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.event-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0;
+  color: #333; /* Couleur foncée */
+}
+
+.event-subtitle {
+  font-size: 0.9em;
+  color: #555; /* Couleur grise pour le sous-titre */
+  margin: 0 0 10px 0;
+}
+
+.event-details {
+  font-size: 0.9em;
+  color: #555; /* Couleur grise pour les détails */
+  margin: 0;
+  font-weight: bold; /* Prix/date en gras */
+}

@@ -1,10 +1,7 @@
 <template>
   <div>
-    <Default />
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
-
-<script setup>
-import Default from "~/components/layouts/default.vue";
-</script>

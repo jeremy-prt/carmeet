@@ -2,23 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-// CORS : autoriser localhost et IP publique du VPS
-const allowedOrigins = ["http://localhost:3000", "http://212.227.250.24:3000"];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Autorise les outils comme curl/postman (origin === undefined)
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
+    origin: "http://localhost:3000",
   })
 );
-
 app.use(express.json());
 
 // Importation des routes
