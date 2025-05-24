@@ -9,8 +9,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      mapboxToken: "",
-      carmeetApiUrl: "",
+      mapboxToken: process.env.NUXT_PUBLIC_MAPBOX_TOKEN,
+      carmeetApiUrl: process.env.NUXT_PUBLIC_MAPBOX_TOKEN,
     },
   },
 });
