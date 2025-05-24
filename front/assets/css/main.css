@@ -1,11 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 @import "tailwindcss";
 
+@font-face {
+  font-family: UnisonPro;
+  src: url("../fonts/UnisonPro-Bold.otf");
+  font-weight: bold;
+}
+
 @theme {
   --color-main: #bf272d;
   --color-secondary: #0070ba;
   --color-red-dark: #b91c1c;
   --color-bg-dark: #170101;
+  --font-unison: "UnisonPro", sans-serif;
 }
 
 html {

@@ -97,11 +97,12 @@
         </linearGradient>
       </defs>
     </svg>
-
-    <Header />
-    <main class="relative pt-8 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32">
-      <slot />
-    </main>
+    <LoaderPage @loadingComplete="onLoadingComplete">
+      <Header />
+      <main class="relative pt-8 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-32">
+        <slot />
+      </main>
+    </LoaderPage>
   </div>
 </template>
 
