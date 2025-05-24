@@ -2,11 +2,23 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
+// Liste des origines autorisées
+const allowedOrigins = ["http://localhost:3000", "http://212.227.250.24:3000"];
+
+// Middleware CORS avec vérification dynamique
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: function (origin, callback) {
+      // Autorise les requêtes sans origine (Postman, serveurs internes, etc.)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   })
 );
+
 app.use(express.json());
 
 // Importation des routes
